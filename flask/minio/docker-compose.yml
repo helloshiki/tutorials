@@ -1,0 +1,15 @@
+version: '2'
+services:
+    ubuntu:
+        container_name: minio
+        image: minio/minio
+        privileged: true
+        network_mode: host
+        command: server /data
+        volumes:
+            - ./data/minio/data/:/data/
+            - ./data/minio/config/:/root/.minio/
+            - /etc/localtime:/etc/localtime:ro
+        environment:
+            MINIO_ACCESS_KEY: minio
+            MINIO_SECRET_KEY: abcde12345
